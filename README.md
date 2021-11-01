@@ -8,6 +8,7 @@ In your terminal:
 git clone https://github.com/LaunchAcademy/rails-6-boilerplate
 cd rails-6-boilerplate 
 bundle
+yarn install
 ```
 
 If you prefer, **you can rename your project with the `mv` command.**
