@@ -1,24 +1,16 @@
-# README
+# How to Use Me
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Assuming you are starting an app that you wish to call `rescue-mission` 
 
-Things you may want to cover:
+In your terminal:
 
-* Ruby version
+```
+git clone https://github.com/LaunchAcademy/rails-6-boilerplate
+cd rails-6-boilerplate 
+bundle
+```
 
-* System dependencies
+If you prefer, **you can rename your project with the `mv` command.**
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Starting from the directory above your app (likely challenges):
+mv <source_directory> <target_directory>
