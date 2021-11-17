@@ -1,5 +1,5 @@
 {
-  "name": "rails-staff-group-project",
+  "name": "rails-boilerplate",
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
