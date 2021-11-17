@@ -1,5 +1,5 @@
 {
-  "name": "rails-staff-group-project",
+  "name": "rails-boilerplate",
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
@@ -31,7 +31,7 @@
     "enzyme-adapter-react-16": "~1.14.0"
   },
   "scripts": {
-    "start": "./bin/webpack-dev-server",
+    "dev:client": "./bin/webpack-dev-server",
     "test": "node_modules/.bin/jest",
     "test:dev": "node_modules/.bin/jest --notify --watch"
   },
