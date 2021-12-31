@@ -1,8 +1,8 @@
 class Api::RecipesController < ApplicationController
 
     def index
-        reply = RecipeReader.Read
-        render json: {recipes: reply}
+        reply = RecipeReader.getRecipeTypes
+        render json: {reply}
     end
 
 end
