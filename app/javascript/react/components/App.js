@@ -1,7 +1,15 @@
 import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import IndexComponent from './Display/Index'
 
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path ="/" component={IndexComponent}/>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default App
