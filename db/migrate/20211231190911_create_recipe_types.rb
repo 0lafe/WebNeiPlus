@@ -3,7 +3,6 @@ class CreateRecipeTypes < ActiveRecord::Migration[6.1]
     create_table :recipe_types do |t|
       t.string :name, null: false
 
-      t.timestamps
     end
   end
 end

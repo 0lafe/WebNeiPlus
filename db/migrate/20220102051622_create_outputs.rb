@@ -4,8 +4,6 @@ class CreateOutputs < ActiveRecord::Migration[6.1]
       t.integer :quantity, null: false
       t.belongs_to :recipe
       t.belongs_to :item
-
-      t.timestamps
     end
   end
 end

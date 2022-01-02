@@ -11,4 +11,4 @@ run ```rails db:create``` to create the db. Then ```rails db:migrate``` if you h
 
 # Storing data
 
-At the moment, this is very much in dev. Running ```rake recipes:store``` should seed the database with some test data from the Recipes.json file. In the future this command should still be used, however that may change. 
+At the moment, this is very much in dev. Running ```rake recipes:store``` should seed the database with some test data from the Recipes.json file. In the future this command should still be used, however that may change. This may take an hour or so lol 
