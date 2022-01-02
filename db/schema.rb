@@ -17,8 +17,12 @@ ActiveRecord::Schema.define(version: 2022_01_02_051622) do
 
   create_table "inputs", force: :cascade do |t|
     t.integer "quantity", null: false
+    t.bigint "recipe_id"
+    t.bigint "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_inputs_on_item_id"
+    t.index ["recipe_id"], name: "index_inputs_on_recipe_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -30,8 +34,12 @@ ActiveRecord::Schema.define(version: 2022_01_02_051622) do
 
   create_table "outputs", force: :cascade do |t|
     t.integer "quantity", null: false
+    t.bigint "recipe_id"
+    t.bigint "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_outputs_on_item_id"
+    t.index ["recipe_id"], name: "index_outputs_on_recipe_id"
   end
 
   create_table "recipe_types", force: :cascade do |t|
@@ -43,6 +51,7 @@ ActiveRecord::Schema.define(version: 2022_01_02_051622) do
   create_table "recipes", force: :cascade do |t|
     t.integer "power"
     t.integer "amps"
+    t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

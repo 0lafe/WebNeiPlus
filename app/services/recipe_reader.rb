@@ -22,11 +22,28 @@ class RecipeReader
         return output
     end
 
+    #reads Recipes.json and stores data in the data base
     def self.write_to_db
-        file = File.read('Recipes.json')
-        parsed = JSON.parse(file)
-        parsed["sources"][0]["machines"].each { |r| 
-            RecipeType.create(name: r["n"])
+        parsed = JSON.parse(File.read('Recipes.json'))
+        parsed["sources"][0]["machines"].each { |type| 
+            RecipeType.create(name: type["n"])
+            handleRecipe(type)
+        }
+    end
+
+    def self.handleRecipe(type)
+        type["recs"].each { |recipe|
+            aRecipe = Recipe.create(power: recipe["eut"], duration: recipe["dur"])
+            recipe["iI"].each { |inputItem|
+                aItem = Item.find_or_create_by(unlocalized_name: inputItem["uN"], localized_name: inputItem["lN"])
+                aInput = Input.create(item: aItem, recipe: aRecipe, quantity: inputItem["a"])
+                aRecipe.inputs << aInput
+            }
+            recipe["iO"].each { |outputItem|
+                aItem = Item.find_or_create_by(unlocalized_name: outputItem["uN"], localized_name: outputItem["lN"])
+                aOutput = Output.create(item: aItem, recipe: aRecipe, quantity: outputItem["a"])
+                aRecipe.outputs << aOutput
+            }
         }
     end
 
