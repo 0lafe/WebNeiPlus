@@ -23,7 +23,11 @@ class RecipeReader
     end
 
     def self.write_to_db
-        
+        file = File.read('Recipes.json')
+        parsed = JSON.parse(file)
+        parsed["sources"][0]["machines"].each { |r| 
+            RecipeType.create(name: r["n"])
+        }
     end
 
 end

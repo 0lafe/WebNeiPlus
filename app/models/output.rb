@@ -1,0 +1,3 @@
+class Output < ApplicationRecord
+
+end

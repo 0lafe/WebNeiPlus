@@ -14,13 +14,14 @@ const IndexComponent = (props) => {
     }, [])
 
     const tiles = recipes.map(r => {
-        console.log(r)
+        console.log(r.name)
         return (
-            <li key={r}>
-                {r}
+            <li key={r.name}>
+                {r.name}
             </li>
         )
     })
+
 
     return (
         <div>
