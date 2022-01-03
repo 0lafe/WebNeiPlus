@@ -1,5 +1,3 @@
-require 'objspace'
-
 
 class RecipeReader
 
@@ -12,7 +10,15 @@ class RecipeReader
     end
 
     def self.get_types
-        
+        reply = []
+        RecipeType.all.each { |aType|
+            reply << [aType.name, aType.recipes.count]
+        }
+        return reply
+    end
+
+    def self.get_one(recipe_map)
+        RecipeType.find_by(name: recipe_map).recipes.limit(10)
     end
 
     #reads Recipes.json and stores data in the data base

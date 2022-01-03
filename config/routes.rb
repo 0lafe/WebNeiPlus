@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   root "homes#index"
 
   namespace :api do
-    resources :recipes, only: [:index]
+    resources :recipes, only: [:index, :show]
+    resources :items, only: [:show]
   end
+
+  get "*path", to: "homes#index"
 
 end

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 const IndexComponent = (props) => {
     const [recipes, setRecipes] = useState([])
@@ -6,7 +7,7 @@ const IndexComponent = (props) => {
     const getRecipes = async () => {
         const reply = await fetch("api/recipes")
         const parsedJson = await reply.json()
-        setRecipes(parsedJson.recipes)
+        setRecipes(parsedJson)
     }
 
     useEffect(() => {
@@ -14,18 +15,17 @@ const IndexComponent = (props) => {
     }, [])
 
     const tiles = recipes.map(r => {
-        console.log(r.name)
         return (
-            <li key={r.name}>
-                {r.name}
+            <li key={r[0]}>
+                <Link to={`/recipes/${r[0]}`}>{`The ${r[0]} has a whopping ${r[1]} recipes! :o`}</Link>
             </li>
         )
     })
 
     return (
         <div>
-            <h1>Hello</h1>
-            <h2>{recipes.length}</h2>
+            <h1>Web Nei</h1>
+            <h2>There are a total of {recipes.length} machines supported!</h2>
             <ul>
                 {tiles}
             </ul>
