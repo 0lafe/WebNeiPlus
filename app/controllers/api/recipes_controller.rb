@@ -1,8 +1,11 @@
 class Api::RecipesController < ApplicationController
 
     def index
-        reply = RecipeReader.Read
-        render json: {recipes: reply}
+        render json: RecipeReader.get_types
+    end
+
+    def show
+        render json: RecipeReader.get_one(params[:id])
     end
 
 end

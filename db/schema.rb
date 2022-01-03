@@ -10,9 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2022_01_02_051622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "inputs", force: :cascade do |t|
+    t.integer "quantity", null: false
+    t.bigint "recipe_id"
+    t.bigint "item_id"
+    t.index ["item_id"], name: "index_inputs_on_item_id"
+    t.index ["recipe_id"], name: "index_inputs_on_recipe_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "unlocalized_name", null: false
+    t.string "localized_name", null: false
+  end
+
+  create_table "outputs", force: :cascade do |t|
+    t.integer "quantity", null: false
+    t.bigint "recipe_id"
+    t.bigint "item_id"
+    t.index ["item_id"], name: "index_outputs_on_item_id"
+    t.index ["recipe_id"], name: "index_outputs_on_recipe_id"
+  end
+
+  create_table "recipe_types", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.bigint "recipe_type_id"
+    t.integer "power"
+    t.integer "amps"
+    t.integer "duration"
+    t.index ["recipe_type_id"], name: "index_recipes_on_recipe_type_id"
+  end
 
 end
