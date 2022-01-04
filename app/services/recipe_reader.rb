@@ -1,4 +1,3 @@
-
 class RecipeReader
 
     BLACKLIST = ["Disassembler", "Plasma Arc Furnace", "Arc Furnace"]
@@ -7,14 +6,6 @@ class RecipeReader
         file = File.read('Recipes.json')
         parsed = JSON.parse(file)
         binding.pry
-    end
-
-    def self.get_types
-        reply = []
-        RecipeType.all.each { |aType|
-            reply << [aType.name, aType.recipes.count]
-        }
-        return reply
     end
 
     def self.get_one(recipe_map)
