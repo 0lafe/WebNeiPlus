@@ -13,6 +13,8 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignoring yarn.lock
+yarn.lock
 
 /node_modules
 /yarn-error.log
