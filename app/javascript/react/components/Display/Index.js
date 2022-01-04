@@ -7,17 +7,17 @@ const IndexComponent = (props) => {
     const getRecipes = async () => {
         const reply = await fetch("api/recipes")
         const parsedJson = await reply.json()
-        setRecipes(parsedJson)
+        setRecipes(parsedJson.recipe_types)
     }
 
     useEffect(() => {
         getRecipes()
     }, [])
 
-    const tiles = recipes.map(r => {
+    const tiles = recipes.map(type => {
         return (
-            <li key={r[0]}>
-                <Link to={`/recipes/${r[0]}`}>{`The ${r[0]} has a whopping ${r[1]} recipes! :o`}</Link>
+            <li key={type.id}>
+                <Link to={`/recipes/${type.name}`}>{`The ${type.name} has a whopping ${type.recipe_quantity} recipes! :o`}</Link>
             </li>
         )
     })
