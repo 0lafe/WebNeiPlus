@@ -7,7 +7,9 @@ run ```rails db:create``` to create the db. Then ```rails db:migrate``` if you h
 
 # Storing data
 
-At the moment, this is very much in dev. Running ```rake recipes:store``` should seed the database with some test data from the Recipes.json file. In the future this command should still be used, however that may change. On my M1 lowend macbook this took ~1 hour. This is probably going to only go up as I add support for machines, fluids, and more relations in the DB. Eventually this will be made into an importable csv file, however that isn't a top priority
+If you wish to seed the recipes locally, you will first need [the data](https://drive.google.com/drive/folders/1gvyB35U5ZeEdYljkxrD1SqlJ7sdkMyjr?usp=sharing). Drop the `.Data-dumps` directory right in the root of this project. From there, running `rake recipes:store` should fill the db with the recipes, items, and everything else needed. 
+
+One thing to note, at the moment the setup process is very janky to avoid hour long seed times. This requires that you have a freshly created database, simply clearing all records won't be enough. 
 
 # Tips on running
 
