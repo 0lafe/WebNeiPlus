@@ -1,43 +1,55 @@
 class RecipeReader
 
-    BLACKLIST = ["Disassembler", "Plasma Arc Furnace", "Arc Furnace"]
-
-    def self.test
-        file = File.read('Recipes.json')
-        parsed = JSON.parse(file)
-        binding.pry
-    end
-
     def self.get_one(recipe_map)
         RecipeType.find_by(name: recipe_map).recipes.limit(10)
     end
 
-    #reads Recipes.json and stores data in the data base
-    def self.write_to_db
-        parsed = JSON.parse(File.read('Recipes.json'))
-        parsed["sources"][0]["machines"].each { |type|
-            if !BLACKLIST.include?(type["n"])
-                puts "Working on #{type["n"]} right now!"
-                aType = RecipeType.create(name: type["n"])
-                handleRecipe(type, aType)
-            end
+    def self.store
+        file = File.read('.Data-dumps/GT Mega/recipes.json')
+        json = JSON.parse(file)
+        items_list = store_items(json)
+        json["handlers"].each { |handler|
+            puts "working on #{handler["handler"]} it has #{handler["recipes"].length} recipes"
+            length = handler["recipes"].length
+            recipe_map = RecipeType.find_or_create_by(name: handler["handler"])
+            handler["recipes"].each_with_index { |recipe, index|
+                handle_recipe(recipe, recipe_map, items_list)
+                puts "#{index}/#{length}"
+            }
         }
     end
 
-    def self.handleRecipe(type, aType)
-        type["recs"].each { |recipe|
-            aRecipe = Recipe.create(power: recipe["eut"], duration: recipe["dur"], recipe_type: aType)
-            recipe["iI"].each { |inputItem|
-                aItem = Item.find_or_create_by(unlocalized_name: inputItem["uN"], localized_name: inputItem["lN"])
-                aInput = Input.create(item: aItem, recipe: aRecipe, quantity: inputItem["a"])
-                aRecipe.inputs << aInput
-            }
-            recipe["iO"].each { |outputItem|
-                aItem = Item.find_or_create_by(unlocalized_name: outputItem["uN"], localized_name: outputItem["lN"])
-                aOutput = Output.create(item: aItem, recipe: aRecipe, quantity: outputItem["a"])
-                aRecipe.outputs << aOutput
-            }
+    def self.handle_recipe(recipe, recipe_map, item_list)
+        aRecipe = Recipe.create(recipe_type: recipe_map)
+        recipe["inputs"].each { |input|
+            handle_input(input["items"][0], aRecipe, item_list)
         }
+        return aRecipe
+    end
+
+    def self.handle_input(input, recipe, item_list)
+        anItem = input["item"]
+        id = anItem["id"]
+        metadata = anItem["metadata"]
+        modid = anItem["modid"]
+        return Input.create(
+            item_id: item_list["#{modid}.#{id}:#{metadata}"][:index], 
+            quantity: input["count"], 
+            recipe: recipe)
+    end
+
+    def self.handle_output(output, recipe)
+        return Output.create(
+            item: save_item(output["item"]), 
+            quantity: output["count"], 
+            recipe: recipe)
+    end
+
+    def self.save_item(item)
+        return Item.create(
+            item_id: item["id"], 
+            metadata: item["metadata"],
+            modid: item["modid"])
     end
 
 end

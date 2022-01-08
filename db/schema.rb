@@ -24,8 +24,11 @@ ActiveRecord::Schema.define(version: 2022_01_02_051622) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "unlocalized_name", null: false
-    t.string "localized_name", null: false
+    t.string "item_id", null: false
+    t.string "metadata", null: false
+    t.string "modid", null: false
+    t.string "localized_name"
+    t.integer "ind"
   end
 
   create_table "outputs", force: :cascade do |t|
