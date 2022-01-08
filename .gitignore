@@ -13,8 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignoring yarn.lock
+# Ignoring installed dependencies
 yarn.lock
+Gemfile.lock
 
 /node_modules
 /yarn-error.log
@@ -31,5 +32,5 @@ yarn.lock
 yarn-debug.log*
 .yarn-integrity
 
-# Ignore recipe list
-/Recipes.json
+# Ignore test files
+/.Data-dumps/*

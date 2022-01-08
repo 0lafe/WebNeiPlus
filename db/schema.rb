@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2022_01_02_051622) do
 
   create_table "inputs", force: :cascade do |t|
     t.integer "quantity", null: false
+    t.integer "relx"
+    t.integer "rely"
     t.bigint "recipe_id"
     t.bigint "item_id"
     t.index ["item_id"], name: "index_inputs_on_item_id"
@@ -24,12 +26,17 @@ ActiveRecord::Schema.define(version: 2022_01_02_051622) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "unlocalized_name", null: false
-    t.string "localized_name", null: false
+    t.string "item_id", null: false
+    t.string "metadata", null: false
+    t.string "modid", null: false
+    t.string "localized_name"
+    t.integer "ind"
   end
 
   create_table "outputs", force: :cascade do |t|
     t.integer "quantity", null: false
+    t.integer "relx"
+    t.integer "rely"
     t.bigint "recipe_id"
     t.bigint "item_id"
     t.index ["item_id"], name: "index_outputs_on_item_id"

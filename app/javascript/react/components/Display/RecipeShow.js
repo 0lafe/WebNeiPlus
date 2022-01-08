@@ -24,14 +24,14 @@ const RecipeShow = (props) => {
                         <h2>Inputs</h2>
                         <ul>
                             {recipe.inputs.map(input => {
-                                return <Link to={`/items/${input.item.id}`}><li key={input.item.id}>{`${input.quantity} ${input.item.localized_name}`}</li></Link>
+                                return <Link to={`/items/${input.item.id}`}><li key={input.item.id}>{`${input.quantity} ${input.item.modid}.${input.item.item_id}:${input.item.metadata}`}</li></Link>
                             })}
                         </ul>
 
                         <h2>Outputs</h2>
                         <ul>
                             {recipe.outputs.map(output => {
-                                return <Link to={`/items/${output.item.id}`}><li key={output.item.id}>{`${output.quantity} ${output.item.localized_name}`}</li></Link>
+                                return <Link to={`/items/${output.item.id}`}><li key={output.item.id}>{`${output.quantity} ${output.item.modid}.${output.item.item_id}:${output.item.metadata}`}</li></Link>
                             })}
                         </ul>
 
