@@ -4,8 +4,8 @@ class Item < ApplicationRecord
     validates :metadata, presence: true
     validates :modid, presence: true
 
-
     def full_name
-        return "#{:modid}.#{:item_id}:#{:metadata}"
+        return "#{self.modid}.#{self.item_id}:#{self.metadata}"
     end
+
 end

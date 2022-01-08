@@ -7,9 +7,9 @@ run ```rails db:create``` to create the db. Then ```rails db:migrate``` if you h
 
 # Storing data
 
-If you wish to seed the recipes locally, you will first need [the data](https://drive.google.com/drive/folders/1gvyB35U5ZeEdYljkxrD1SqlJ7sdkMyjr?usp=sharing). Drop the `.Data-dumps` directory right in the root of this project. From there, running `rake recipes:store` should fill the db with the recipes, items, and everything else needed. 
+If you wish to seed the recipes locally, you will first need [the data](https://drive.google.com/drive/folders/1gvyB35U5ZeEdYljkxrD1SqlJ7sdkMyjr?usp=sharing). Drop the `.Data-dumps` directory right in the root of this project. From there, running `rake recipes:store` should fill the db with the recipes, items, and everything else needed.
 
-One thing to note, at the moment the setup process is very janky to avoid hour long seed times. This requires that you have a freshly created database, simply clearing all records won't be enough. 
+One thing to note, at the moment the setup process is very janky to avoid hour long seed times. This requires that you have a freshly created database, simply clearing all records won't be enough. Drop and recreate it if you need to re seed
 
 # Tips on running
 

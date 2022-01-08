@@ -5,4 +5,8 @@ namespace :recipes do |args|
         DBSeeder.main
     end
 
+    task :test => [ :environment ] do
+        DBSeeder.test
+    end
+
 end

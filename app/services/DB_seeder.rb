@@ -2,6 +2,12 @@ class DBSeeder
 
     RECIPE_PATH = ".Data-dumps/GT Mega/recipes.json"
 
+    def self.test
+        start = Time.now
+        json = JSON.parse(File.read(RECIPE_PATH))
+        binding.pry
+    end
+
     def self.main
         start = Time.now
         json = JSON.parse(File.read(RECIPE_PATH))
@@ -48,7 +54,9 @@ class DBSeeder
                     inputs << {
                         recipe_id: recipe_index,
                         item_id: items["#{anItem["modid"]}.#{anItem["id"]}:#{anItem["metadata"]}"][:ind],
-                        quantity: input["items"][0]["count"]
+                        quantity: input["items"][0]["count"],
+                        relx: input["relx"],
+                        rely: input["rely"]
                     }
                 }
                 this_output = []
@@ -63,7 +71,9 @@ class DBSeeder
                     outputs << {
                         recipe_id: recipe_index,
                         item_id: items["#{anItem["modid"]}.#{anItem["id"]}:#{anItem["metadata"]}"][:ind],
-                        quantity: output["items"][0]["count"]
+                        quantity: output["items"][0]["count"],
+                        relx: output["relx"],
+                        rely: output["rely"]
                     }
                 }
 
