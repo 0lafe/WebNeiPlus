@@ -1,10 +1,11 @@
 class DBSeeder
 
     RECIPE_PATH = ".Data-dumps/GT Mega/recipes.json"
+    ITEM_PATH = ".Data-dumps/GT Mega/itemlist.json"
 
     def self.test
         start = Time.now
-        json = JSON.parse(File.read(RECIPE_PATH))
+        json = JSON.parse(File.read(ITEM_PATH))
         binding.pry
     end
 
@@ -81,7 +82,8 @@ class DBSeeder
             }
             type_index += 1
         }
-        puts "Recipes loadded into RAM, now storing in DB"
+        puts "Recipes loadded into RAM, localizing item names"
+        items = localize_names(items)
         write_to_db({
             recipes: recipes,
             items: items,
@@ -100,11 +102,23 @@ class DBSeeder
                 item_id: id,
                 metadata: metadata,
                 modid: modid,
-                ind: item_index
+                ind: item_index,
+                unlocalized_name: "#{modid}.#{id}:#{metadata}",
+                localized_name: nil
             }
             item_index += 1
         end
         return item_index
+    end
+
+    def self.localize_names(items)
+        item_json = JSON.parse(File.read(ITEM_PATH))
+        item_json["items"].each { |item|
+            if items["#{item["item"]["modid"]}.#{item["item"]["id"]}:#{item["item"]["metadata"]}"]
+                items["#{item["item"]["modid"]}.#{item["item"]["id"]}:#{item["item"]["metadata"]}"][:localized_name] = item["name"]
+            end
+        }
+        return items
     end
 
     def self.write_to_db(data)
