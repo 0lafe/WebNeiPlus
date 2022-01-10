@@ -24,14 +24,22 @@ const RecipeShow = (props) => {
                         <h2>Inputs</h2>
                         <ul>
                             {recipe.inputs.map(input => {
-                                return <Link to={`/items/${input.item.id}`}><li key={input.item.id}>{`${input.quantity} ${input.item.modid}.${input.item.item_id}:${input.item.metadata}`}</li></Link>
+                                let itemName = input.item.localized_name
+                                if (!input.item.localized_name) {
+                                    itemName = `${input.item.modid}.${input.item.item_id}:${input.item.metadata}`
+                                }
+                                return <Link to={`/items/${input.item.id}`}><li key={input.item.id}>{`${input.quantity} ${itemName}`}</li></Link>
                             })}
                         </ul>
 
                         <h2>Outputs</h2>
                         <ul>
                             {recipe.outputs.map(output => {
-                                return <Link to={`/items/${output.item.id}`}><li key={output.item.id}>{`${output.quantity} ${output.item.modid}.${output.item.item_id}:${output.item.metadata}`}</li></Link>
+                                let itemName = output.item.localized_name
+                                if (!output.item.localized_name) {
+                                    itemName = `${output.item.modid}.${output.item.item_id}:${output.item.metadata}`
+                                }
+                                return <Link to={`/items/${output.item.id}`}><li key={output.item.id}>{`${output.quantity} ${itemName}`}</li></Link>
                             })}
                         </ul>
 
