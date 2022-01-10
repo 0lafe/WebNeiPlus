@@ -8,7 +8,6 @@ const ItemShow = (props) => {
         const reply = await fetch(`/api/items/${props.match.params.item}`)
         const parsedJson = await reply.json()
         setRecipes(parsedJson.recipes)
-        console.log(parsedJson.recipes)
     }
 
     useEffect(() => {
