@@ -11,9 +11,8 @@ export const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path ="/" component={IndexComponent}/>
-        <Route exact path ="/recipes/:recipeMap" component={RecipeShow}/>
+        <Route exact path ="/recipes/:recipeMap" component={RecipePage}/>
         <Route exact path ="/items/:item" component={ItemShow}/>
-        <Route exact path ="/test" component={RecipePage}/>
         <Route exact path ="/v2" component={WebNEIApp}/>
       </Switch>
     </BrowserRouter>

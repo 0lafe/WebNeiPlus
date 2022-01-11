@@ -4,23 +4,17 @@ import React from "react"
 import ItemIcon from "./ItemIcon"
 
 const ItemGrid = (props) => {
+    const { items } = props
 
     const x = 3
     const y = 3
-    let test = []
-    Array.from(Array(5)).forEach((_, index) => {
-        test.push({
-            item: "Tungsten Block",
-            quantity: index
-        })
-    })
 
     let formattedArray = []
     Array.from(Array(y)).forEach((_, indexy) => {
         let row = []
         Array.from(Array(x)).forEach((_, indexx) => {
-            if (test[indexx + indexy * x]) {
-                row.push(test[indexx + indexy * x])
+            if (items[indexx + indexy * x]) {
+                row.push(items[indexx + indexy * x])
             } else {
                 row.push(null)
             }
@@ -53,7 +47,7 @@ const ItemGrid = (props) => {
                                     }}>
                                         {item && 
                                         <div>
-                                            <ItemIcon name={item.item}/>
+                                            <ItemIcon name={item.item.localized_name ? item.item.localized_name : item.item.unlocalized_name}/>
                                             {item.quantity}
                                         </div>}
                                     </ItemBox>
