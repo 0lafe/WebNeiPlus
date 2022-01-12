@@ -16,10 +16,10 @@ const RecipeComponent = (props) => {
 
 
     return (
-        <div style={{display: 'flex', justifyContent:"center"}}>
+        <div style={{display: 'flex', justifyContent:"center", paddingBottom: 30}}>
             <Grid container columnSpacing={2} alignItems="center">
                 <Grid item>
-                    <ItemGrid items={recipe.inputs}/>
+                    <ItemGrid items={recipe.formatted_inputs}/>
                 </Grid>
                 <Grid item>
                     <ItemBox sx={{

@@ -49,8 +49,9 @@ const RecipePage = (props) => {
                         <div key={recipe.id} style={{display: 'flex', justifyContent:"center"}}>
                             <RecipeComponent recipe={recipe}/>
                         </div>
+
                     )
-                })}
+                })} 
         </div>
     )
 }
