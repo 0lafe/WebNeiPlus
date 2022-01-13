@@ -5,7 +5,7 @@ class Api::RecipesController < ApplicationController
     end
 
     def show
-        render json: RecipeReader.get_one(params[:id])
+        render json: RecipeReader.recipe_show(params)
     end
 
 end

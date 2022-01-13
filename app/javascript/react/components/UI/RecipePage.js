@@ -1,27 +1,9 @@
-import { Paper, styled } from "@mui/material"
-import React, { useEffect, useState } from "react"
+import React from "react"
+import ItemBox from "../Shapes/ItemBox"
 import RecipeComponent from "./RecipeComponent"
 
-
 const RecipePage = (props) => {
-    const [recipes, setRecipes] = useState([])
-
-    const getRecipes = async () => {
-        const reply = await fetch(`/api/recipes/${props.match.params.recipeMap}`)
-        const parsedJson = await reply.json()
-        setRecipes(parsedJson.recipes)
-    }
-
-    useEffect(() => {
-        getRecipes()
-    }, [])
-
-    const ItemBox = styled(Paper)(({ theme }) => ({
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
+    const { recipes, name } = props
 
     return (
         <div>
@@ -35,7 +17,7 @@ const RecipePage = (props) => {
                             alignItems: "center"
                         }}>
                 <span>
-                    {props.match.params.recipeMap}
+                    {name}
                 </span>
                 </ItemBox>
             </div>

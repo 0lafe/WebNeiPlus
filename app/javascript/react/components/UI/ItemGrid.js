@@ -1,26 +1,20 @@
-import { styled } from '@mui/material/styles';
-import { Box, Grid, Paper } from "@mui/material"
+import { Grid } from "@mui/material"
 import React from "react"
 import ItemIcon from "./ItemIcon"
+import { Link } from 'react-router-dom';
+import ItemBox from "../Shapes/ItemBox"
 
 const ItemGrid = (props) => {
     const { items } = props
 
-    const ItemBox = styled(Paper)(({ theme }) => ({
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
-
     return (
         <div>
-            {items.map(row => {
+            {items.map((row, index) => {
                 return (
-                    <Grid container columnSpacing={2} style={{paddingBottom: 10}} >
-                        {row.map(item => {
+                    <Grid container columnSpacing={2} style={{paddingBottom: 10}} key={index}>
+                        {row.map((item, index2) => {
                             return (
-                                <Grid item>
+                                <Grid item key={(index2 + 1) * (index + 1)}>
                                     <ItemBox sx={{
                                         width: 100,
                                         height: 100,
@@ -31,8 +25,10 @@ const ItemGrid = (props) => {
                                     }}>
                                         {item && 
                                         <div>
-                                            <ItemIcon name={item.item.localized_name ? item.item.localized_name : item.item.unlocalized_name}/>
-                                            {item.quantity}
+                                            <Link to={`/items/${item.item.id}`}>
+                                                <ItemIcon name={item.item.localized_name ? item.item.localized_name : item.item.unlocalized_name}/>
+                                                {item.quantity}
+                                            </Link>
                                         </div>}
                                     </ItemBox>
                                 </Grid>
