@@ -1,7 +1,9 @@
 class RecipeSerializer < ActiveModel::Serializer
   attributes :id, :power, :amps, :duration, :inputs, :outputs, :formatted_inputs
+  
   has_many :inputs
   has_many :outputs
+  belongs_to :recipe_type
 
   def formatted_inputs
     x = 3

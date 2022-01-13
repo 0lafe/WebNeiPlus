@@ -1,19 +1,13 @@
 import React from "react"
 import ItemGrid from "./ItemGrid"
-import { Grid, Paper, styled } from "@mui/material"
+import { Grid } from "@mui/material"
 import ItemIcon from "./ItemIcon";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Link } from "react-router-dom";
+import ItemBox from "../Shapes/ItemBox"
 
 const RecipeComponent = (props) => {
     const { recipe } = props
-
-    const ItemBox = styled(Paper)(({ theme }) => ({
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
-
 
     return (
         <div style={{display: 'flex', justifyContent:"center", paddingBottom: 30}}>
@@ -41,9 +35,11 @@ const RecipeComponent = (props) => {
                                 display: "flex",
                                 justifyContent:"center", 
                                 alignItems: "center"
-                            }}>
-                        <ItemIcon name={recipe.outputs[0].item.localized_name ? recipe.outputs[0].item.localized_name : recipe.outputs[0].item.unlocalized_name}/>
-                        {recipe.outputs[0].quantity}
+                        }}>
+                        <Link to={`/items/${recipe.outputs[0].item.id}`}>
+                            <ItemIcon name={recipe.outputs[0].item.localized_name ? recipe.outputs[0].item.localized_name : recipe.outputs[0].item.unlocalized_name}/>
+                            {recipe.outputs[0].quantity}
+                        </Link>
                     </ ItemBox>
                 </Grid>
             </Grid>
