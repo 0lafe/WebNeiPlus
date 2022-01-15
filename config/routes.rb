@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :recipes, only: [:index, :show]
     resources :items, only: [:show]
+    resources :recipe_types, only: [:show]
   end
 
   get "*path", to: "homes#index"

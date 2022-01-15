@@ -37,8 +37,7 @@ const RecipeComponent = (props) => {
                                 alignItems: "center"
                         }}>
                         <Link to={`/items/${recipe.outputs[0].item.id}`}>
-                            <ItemIcon name={recipe.outputs[0].item.localized_name ? recipe.outputs[0].item.localized_name : recipe.outputs[0].item.unlocalized_name}/>
-                            {recipe.outputs[0].quantity}
+                            <ItemIcon item={recipe.outputs[0].item} quantity={recipe.outputs[0].quantity}/>
                         </Link>
                     </ ItemBox>
                 </Grid>

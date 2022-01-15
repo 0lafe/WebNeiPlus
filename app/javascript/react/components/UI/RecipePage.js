@@ -1,13 +1,19 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import ItemBox from "../Shapes/ItemBox"
+import PageComponent from "./PageComponent"
 import RecipeComponent from "./RecipeComponent"
 
 const RecipePage = (props) => {
-    const { recipes, name } = props
+    const { recipes, name, quantity, setPage } = props
+    const [recipesPerPage, setRecipesPerPage] = useState(10)
+
+    const changePage = (event, page) => {
+        setPage(page)
+    }
 
     return (
         <div>
-            <div style={{display: 'flex', justifyContent:"center"}}>
+            <div style={{display: 'flex', justifyContent: "center", paddingBottom: 10, paddingTop: 10}}>
                 <ItemBox sx={{
                             width: "85%",
                             height: 50,
@@ -21,10 +27,17 @@ const RecipePage = (props) => {
                 </span>
                 </ItemBox>
             </div>
-            <div className="text-center">
-                <span>
-                    This is the page component
-                </span>
+            <div style={{display: 'flex', justifyContent: "center", paddingBottom: 10}}>
+                <ItemBox sx={{
+                                width: "85%",
+                                height: 50,
+                                backgroundColor: 'gray',
+                                display: "flex",
+                                justifyContent:"center", 
+                                alignItems: "center"
+                            }}>
+                    <PageComponent count={Math.ceil(quantity/recipesPerPage)} onChange={changePage}/>
+                </ItemBox>
             </div>
                 {recipes.map(recipe => {
                     return (
