@@ -17,7 +17,7 @@ const IndexComponent = (props) => {
     const tiles = recipes.map(type => {
         return (
             <li key={type.id}>
-                <Link to={`/recipes/${type.name}`}>{`The ${type.name} has a whopping ${type.recipe_quantity} recipes! :o`}</Link>
+                <Link to={`/recipes/${type.id}`}>{`The ${type.name} has a whopping ${type.recipe_quantity} recipes! :o`}</Link>
             </li>
         )
     })

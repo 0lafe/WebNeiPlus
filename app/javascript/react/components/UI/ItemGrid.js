@@ -26,8 +26,7 @@ const ItemGrid = (props) => {
                                         {item && 
                                         <div>
                                             <Link to={`/items/${item.item.id}`}>
-                                                <ItemIcon name={item.item.localized_name ? item.item.localized_name : item.item.unlocalized_name}/>
-                                                {item.quantity}
+                                                <ItemIcon item={item.item} quantity={item.quantity}/>
                                             </Link>
                                         </div>}
                                     </ItemBox>
