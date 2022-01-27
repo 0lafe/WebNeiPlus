@@ -34,3 +34,4 @@ yarn-debug.log*
 
 # Ignore test files
 /.Data-dumps/*
+/app/javascript/react/components/dev-data/*

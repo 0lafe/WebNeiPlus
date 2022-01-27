@@ -2,14 +2,13 @@ import { Paper, Tooltip } from "@mui/material"
 import React from "react"
 import MemoryIcon from '@mui/icons-material/Memory';
 
-const ItemIcon = (props) => {
-    const { item, quantity } = props
+const ItemIcon = ({ item, quantity, x, y, scale }) => {
 
     const name = item.localized_name ? item.localized_name : item.unlocalized_name
 
     return (
         <Tooltip title={name} placement="top">
-            <div>
+            <div style={{position: 'absolute', zIndex: 100, top: y * scale, left: x * scale}}>
                 <MemoryIcon fontSize="large"/>
                 {quantity > 1 ? quantity : null}
             </div>
