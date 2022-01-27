@@ -4,8 +4,7 @@ class DBSeeder
     ITEM_PATH = ".Data-dumps/GT Mega/itemlist.json"
 
     def self.test
-        start = Time.now
-        json = JSON.parse(File.read(ITEM_PATH))
+        json = JSON.parse(File.read(RECIPE_PATH))
         binding.pry
     end
 
@@ -35,21 +34,24 @@ class DBSeeder
         type_index = 1
         recipe_index = 1
         item_index = 1
-        json["handlers"].each { |handler|
-            recipe_types << {name: handler["handler"]}
-            handler["recipes"].each_with_index { |recipe, index|
+        json["h"].each { |handler|
+            recipe_types << {name: handler["hn"], modID: handler["hi"], unlocalized_name: "#{handler["hi"]}@@#{handler["hn"]}"}
+            handler["r"].each_with_index { |recipe, index|
                 power = nil
                 duration = nil
-                if recipe["info"]
-                    power = recipe["info"]["EUrate"]
-                    duration = recipe["info"]["duration"]
+                if recipe["e"]
+                    power = recipe["e"]["EUrate"]
+                    duration = recipe["e"]["duration"]
                 end
+
                 recipes << { 
                     recipe_type_id: type_index,
                     power: power,
                     duration: duration
-                 }
-                recipe["inputs"].each { |input|
+                }
+
+                this_input = get_inputs(recipe)
+                this_input.each { |input|
                     anItem = input["items"][0]["item"]
                     item_index = create_items(items, item_index, anItem)
                     inputs << {
@@ -60,12 +62,8 @@ class DBSeeder
                         rely: input["rely"]
                     }
                 }
-                this_output = []
-                if recipe["outputs"]
-                    this_output = recipe["outputs"]
-                else
-                    this_output = recipe["output"]
-                end
+
+                this_output = get_outputs(recipe)
                 this_output.each { |output|
                     anItem = output["items"][0]["item"]
                     item_index = create_items(items, item_index, anItem)
@@ -91,6 +89,24 @@ class DBSeeder
             outputs: outputs,
             recipe_types: recipe_types
             })
+    end
+
+    def self.get_inputs(recipe)
+        if recipe["inputs"]
+            return recipe["inputs"]
+        else
+            return recipe["i"]
+        end
+    end
+
+    def self.get_outputs(recipe)
+        if recipe["outputs"]
+            return recipe["outputs"]
+        elsif recipe["output"]
+            return recipe["output"]
+        else 
+            return recipe["o"]
+        end
     end
 
     def self.create_items(items, item_index, aItem)

@@ -5,6 +5,11 @@ namespace :recipes do |args|
         DBSeeder.main
     end
 
+    desc "Uploads GUIs and links to DB"
+    task :gui => [ :environment ] do
+        GUIHandler.handle
+    end
+
     task :test => [ :environment ] do
         DBSeeder.test
     end
