@@ -3,7 +3,7 @@ import RecipePage from "../UI/RecipePage"
 import { useParams } from "react-router-dom"
 import { getRecipe, getRecipeType } from "@api"
 
-const RecipeViewHandler = () => {
+const Recipes = () => {
     const { id } = useParams()
 
     const [recipes, setRecipes] = useState([])
@@ -14,14 +14,14 @@ const RecipeViewHandler = () => {
 
     useEffect(() => {
         getRecipeType(id).then(response => {
-            setrecipeMapName(response.name)
-            setQuantity(response.quantity)
+            setrecipeMapName(response.data.name)
+            setQuantity(response.data.quantity)
         })
     }, [])
 
     useEffect(() => {
         getRecipe(id, page, limit).then(response => {
-            setRecipes(response.recipes)
+            setRecipes(response.data.recipes)
         })
     }, [page])
 
@@ -35,4 +35,4 @@ const RecipeViewHandler = () => {
     )
 }
 
-export default RecipeViewHandler
+export default Recipes

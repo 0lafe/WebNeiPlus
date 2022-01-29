@@ -25,7 +25,7 @@ const errorNotice = (response) => {
 
 const url = () => {
   if (process.env.NODE_ENV === 'development') {
-    return 'http://localhost:9000'
+    return 'http://localhost:3000'
   } else {
     return process.env.REACT_APP_API_URL
   }
@@ -47,8 +47,8 @@ export const getItem = (...args) => new Promise((resolve, reject) => {
 
 //Recipe Fetch Requests
 
-export const getRecipe = (...args) => new Promise((resolve, reject) => {
-  return axios.get(`/api/recipes/:id`, {...args})
+export const getRecipes = (...args) => new Promise((resolve, reject) => {
+  return axios.get(`/api/recipes`, {...args})
   .then((res) => resolve(res))
   .catch((err) => {
     const { response } = err
@@ -57,8 +57,28 @@ export const getRecipe = (...args) => new Promise((resolve, reject) => {
   })
 })
 
-export const getRecipeType = (id, page, limit, ...args) => new Promise((resolve, reject) => {
-  return axios.get(`/api/recipe_types/${id}/&page=${page}&perPage=${limit}`, {...args})
+export const getRecipeById = (id, page, limit, ...args) => new Promise((resolve, reject) => {
+  return axios.get(`/api/recipes/${id}?searchType=handler&page=${page}&perPage=${limit}`, {...args})
+  .then((res) => resolve(res))
+  .catch((err) => {
+    const { response } = err
+    errorNotice(response)
+    reject(response)
+  })
+})
+
+export const getRecipeTypeById = (id, page, limit, ...args) => new Promise((resolve, reject) => {
+  return axios.get(`/api/recipe_types/${id}&page=${page}&perPage=${limit}`, {...args})
+  .then((res) => resolve(res))
+  .catch((err) => {
+    const { response } = err
+    errorNotice(response)
+    reject(response)
+  })
+})
+
+export const getAllRecipeTypes = (...args) => new Promise((resolve, reject) => {
+  return axios.get(`/api/recipes`, {...args})
   .then((res) => resolve(res))
   .catch((err) => {
     const { response } = err
