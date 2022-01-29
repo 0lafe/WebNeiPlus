@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react"
+import GUI from "../GUI/GUI"
 import ItemBox from "../Shapes/ItemBox"
 import PageComponent from "./PageComponent"
-import RecipeComponent from "./RecipeComponent"
 
-const RecipePage = (props) => {
-    const { recipes, name, quantity, setPage } = props
+const RecipePage = ({ recipes, name, quantity, setPage, guiUrl, scale }) => {
     const [recipesPerPage, setRecipesPerPage] = useState(10)
 
     const changePage = (event, page) => {
@@ -42,7 +41,7 @@ const RecipePage = (props) => {
                 {recipes.map(recipe => {
                     return (
                         <div key={recipe.id} style={{display: 'flex', justifyContent:"center"}}>
-                            <RecipeComponent recipe={recipe}/>
+                            <GUI recipe={recipe} url={guiUrl} scale={scale}/>
                         </div>
 
                     )

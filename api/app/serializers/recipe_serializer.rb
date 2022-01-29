@@ -6,6 +6,7 @@ class RecipeSerializer < ActiveModel::Serializer
   belongs_to :recipe_type
 
   def formatted_inputs
+
     x = 3
     y = 3
 
@@ -22,8 +23,8 @@ class RecipeSerializer < ActiveModel::Serializer
       realx = (input["relx"].to_f/18).floor() - 1
       realy = (input["rely"].to_f/18).floor()
       output[realy][realx] = {
-        quantity: input["quantity"],
-        item: Item.find(input["item_id"])
+        quantity: input.quantity,
+        item: input.item
       }
     }
 

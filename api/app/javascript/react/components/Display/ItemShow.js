@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import GUI from "../UI/GUI"
 
 const ItemShow = (props) => {
     const [recipes, setRecipes] = useState([])

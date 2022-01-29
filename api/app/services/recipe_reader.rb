@@ -2,8 +2,8 @@ class RecipeReader
 
     #dictates what search type is being preformed
     def self.recipe_show(params)
-        if params[:searchType] == "map"
-            return get_map(params)
+        if params[:searchType] == "handler"
+            return get_handler(params)
         end
         if params[:searchType] == "item"
             return get_item(params)
@@ -12,8 +12,8 @@ class RecipeReader
 
     private
 
-    #returns search for a recipe map
-    def self.get_map(params)
+    #returns search for a recipe handler
+    def self.get_handler(params)
         RecipeType.find(params[:id]).recipes.limit(params[:perPage]).offset((params[:page].to_i - 1) * params[:perPage].to_i)
     end
 
