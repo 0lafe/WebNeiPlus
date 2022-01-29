@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2022_01_02_051622) do
     t.string "modID", null: false
     t.string "unlocalized_name", null: false
     t.string "gui_url"
+    t.integer "scale"
   end
 
   create_table "recipes", force: :cascade do |t|
