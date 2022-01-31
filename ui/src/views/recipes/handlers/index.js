@@ -30,7 +30,7 @@ const Handlers = () => {
         <TopBanner name={data.name}/>
         <PaginationBar count={Math.ceil(data.quantity/limit)} onChange={(value) => setPage(value)}/>
         {recipes.map(recipe => {
-            return <HandlerRecipe id={recipe.id} recipe={recipe} url={data.gui_url} scale={data.scale}/>
+            return <HandlerRecipe key={recipe.id} recipe={recipe} url={data.gui_url} scale={data.scale}/>
         })}
     </Fragment>
     )

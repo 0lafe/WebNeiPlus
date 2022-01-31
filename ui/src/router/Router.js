@@ -10,6 +10,8 @@ import { BrowserRouter as AppRouter, Route, Switch, Redirect } from 'react-route
 // ** Routes & Default Routes
 import { Routes } from './routes'
 
+import NavBar from '@layouts/NavBar'
+
 const Router = () => {
 
   const NotAuthorized = lazy(() => import('@views/NotAuthorized'))
@@ -44,6 +46,7 @@ const Router = () => {
 
   return (
     <AppRouter basename={process.env.REACT_APP_BASENAME}>
+      <NavBar></NavBar>
       <Switch>
 
         {/* All Valid Path Pages */}

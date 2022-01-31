@@ -9,7 +9,8 @@
       "@components": ["src/utility/components"],
       "@api": ["src/utility/API"],
       "@hooks": ["src/utility/hooks"],
-      "@views": ["src/views"]
+      "@views": ["src/views"],
+      "@layouts": ["src/layouts"]
     }
   }
 }
