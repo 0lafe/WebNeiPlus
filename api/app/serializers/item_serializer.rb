@@ -1,5 +1,6 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :id, :full_name
-  has_many :inputs
-  has_many :output
+  attributes :id, :unlocalized_name, :localized_name, :handler_ids
+  # has_many :inputs
+  # has_many :outputs
+
 end
