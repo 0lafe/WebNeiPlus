@@ -3,6 +3,7 @@ import { Pagination } from "@mui/material"
 import StyledBox from '@components/StyledBox'
 
 const PaginationBar = ({ count, onChange }) => {
+
   return (
     <div style={{display: 'flex', justifyContent: "center", paddingBottom: 10}}>
       <StyledBox 

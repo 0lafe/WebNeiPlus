@@ -31,6 +31,8 @@ const Router = () => {
               path={route.path}
               exact={route.exact === true}
               render={props => {
+                props = {...props,
+                extra: route.extra}
                 return (
                   <Suspense fallback={<Spinner/>}>
                     <route.component {...props} />
@@ -46,7 +48,7 @@ const Router = () => {
 
   return (
     <AppRouter basename={process.env.REACT_APP_BASENAME}>
-      <NavBar></NavBar>
+      <NavBar/>
       <Switch>
 
         {/* All Valid Path Pages */}

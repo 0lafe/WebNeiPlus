@@ -1,6 +1,8 @@
 import StyledBox from '@components/StyledBox'
+import { Link } from 'react-router-dom'
 
-const TopBanner = ({name}) => {
+const TopBanner = ({handlers, searchType}) => {
+
   return (
     <div style={{display: 'flex', justifyContent: "center", paddingBottom: 10, paddingTop: 10}}>
       <StyledBox 
@@ -12,9 +14,15 @@ const TopBanner = ({name}) => {
           justifyContent:"center", 
           alignItems: "center"
         }}>
-      <span>
-        {name}
-      </span>
+          {handlers.map(handler => {
+            return (
+              <Link to={`/recipes/handler/${handler.id}`}>
+                <span style={{margin: 20}}>
+                    {handler.name}
+                </span>
+              </Link>
+            )
+          })}
       </StyledBox>
     </div>
   )

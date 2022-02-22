@@ -20,7 +20,6 @@ const errorNotice = (response) => {
   })
 } 
 
-
 // ** Set api Base URL by env variable
 
 const url = () => {
@@ -31,7 +30,6 @@ const url = () => {
   }
 } 
 axios.defaults.baseURL = url()
-
 
 //Item Fetch Requests
 
@@ -57,7 +55,7 @@ export const getRecipes = (...args) => new Promise((resolve, reject) => {
   })
 })
 
-export const getRecipeById = (id, page, limit, ...args) => new Promise((resolve, reject) => {
+export const getHandlerRecipesById = (id, page, limit, ...args) => new Promise((resolve, reject) => {
   return axios.get(`/api/recipes/${id}?searchType=handler&page=${page}&perPage=${limit}`, {...args})
   .then((res) => resolve(res))
   .catch((err) => {
@@ -67,8 +65,28 @@ export const getRecipeById = (id, page, limit, ...args) => new Promise((resolve,
   })
 })
 
-export const getRecipeTypeById = (id, page, limit, ...args) => new Promise((resolve, reject) => {
-  return axios.get(`/api/recipe_types/${id}&page=${page}&perPage=${limit}`, {...args})
+export const getItemRecipesByID = (id, page, limit, handler, ...args) => new Promise((resolve, reject) => {
+  return axios.get(`/api/recipes/${id}?searchType=item&page=${page}&perPage=${limit}&handler=${handler}`, {...args})
+  .then((res) => resolve(res))
+  .catch((err) => {
+    const { response } = err
+    errorNotice(response)
+    reject(response)
+  })
+})
+
+export const getHandlerInfo = (id, ...args) => new Promise((resolve, reject) => {
+  return axios.get(`/api/recipe_types/${id}`, {...args})
+  .then((res) => resolve(res))
+  .catch((err) => {
+    const { response } = err
+    errorNotice(response)
+    reject(response)
+  })
+})
+
+export const getItemInfo = (id, ...args) => new Promise((resolve, reject) => {
+  return axios.get(`/api/items/${id}`, {...args})
   .then((res) => resolve(res))
   .catch((err) => {
     const { response } = err

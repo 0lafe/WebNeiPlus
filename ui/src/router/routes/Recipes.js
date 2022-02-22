@@ -4,12 +4,16 @@ const RecipesRoutes = [
   {
     path: '/recipes/handlers/:id',
     className: 'recipes',
-    component: lazy(() => import('../../views/recipes/handlers'))
+    exact: true,
+    component: lazy(() => import('../../views/recipes/handlers')),
+    extra: "recipes"
   },
   {
     path: '/recipes/items/:id',
     className: 'items',
-    component: lazy(() => import('../../views/recipes/handlers'))
+    exact: true,
+    component: lazy(() => import('../../views/recipes/handlers')),
+    extra: "items"
   }
 ]
 
