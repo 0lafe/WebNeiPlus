@@ -13,10 +13,18 @@ class Item < ApplicationRecord
 
     def handler_ids
         handlers = {}
+        current = 0
         self.inputs.each { |input|
-            handlers[input.recipe.recipe_type.id] = true
+            if input.recipe.id != current
+                current = input.recipe.id
+                if handlers[input.recipe.recipe_type.id]
+                    handlers[input.recipe.recipe_type.id] += 1
+                else
+                    handlers[input.recipe.recipe_type.id] = 1
+                end
+            end
         }
-        handlers.keys
+        handlers
     end
 
 end
